@@ -24,7 +24,6 @@ str:    .asciz "%c "
 // assembly constants for addresses to the variables in the data seg
         .set    offsetx, x - base
         .set    offsetstr, str - base
-base_address:   .word base
 
 // -------------------------(Data End)--------------------------------
         .text
@@ -125,3 +124,4 @@ base_address:   .word base
  		.unreq	        baseaddr
  		pop 	        {r9, lr}
  		bx		lr
+base_address:   .word base
