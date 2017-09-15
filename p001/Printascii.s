@@ -63,6 +63,9 @@ str:    .asciz "%c "
  		b 		afterdigitloopprintf
 
  lowercase:
+                mov             r1, #10
+                add             r0, baseaddr, #offsetstr
+                bl              printf
  		mov		r0, #97
  		str 	        r0, [baseaddr, #offsetx]
 
@@ -82,6 +85,9 @@ str:    .asciz "%c "
  		b 		afterlowercaseprintf
  		// while (x < 90)
  caps:
+                mov             r1, #10
+                add             r0, baseaddr, #offsetstr
+                bl              printf
 		mov		r0, #65
 		str 	        r0, [baseaddr, #offsetx]
 
