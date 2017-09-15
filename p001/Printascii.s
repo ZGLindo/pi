@@ -20,11 +20,9 @@ base:                         // the base address of the data segment
 x:              .word 0
 // format string for the output. %c - print assigned ascii char for val
 str:            .asciz "%c "
-newline:        .asciz "\n "
 // assembly constants for addresses to the variables in the data seg
         .set    offsetx, x - base
         .set    offsetstr, str - base
-        .set    offsetnl, newline - base
 
 // -------------------------(Data End)--------------------------------
         .text
