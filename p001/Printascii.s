@@ -82,7 +82,7 @@ str:    .asciz "%c "
  		b 		afterlowercaseprintf
  		// while (x < 90)
  caps:
-		mov		r0, #90
+		mov		r0, #65
 		str 	        r0, [baseaddr, #offsetx]
 
 		// while (x < 91)
@@ -90,7 +90,7 @@ str:    .asciz "%c "
 		ldr		r0, [baseaddr, #offsetx]
 
  		//if (x >= 91)
- 		cmp		r0, #123
+ 		cmp		r0, #91
  		bge		done
 
  		// if (x < 91)
