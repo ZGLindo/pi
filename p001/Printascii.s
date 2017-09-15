@@ -42,10 +42,10 @@ base_address:   .word base
  */
 
  main:
- 		push 	{r9, lr}
+ 		push 	        {r9, lr}
 		baseaddr .req r9
  		ldr		baseaddr, base_address
- 		str 	r0, [baseaddr, #offsetx]		//store 48 in r0
+ 		str 	        r0, [baseaddr, #offsetx] 
 
  		// while (x < 58)
  digitloop:	
@@ -56,13 +56,15 @@ base_address:   .word base
  		bge		lowercase
 
  		// if (x < 58)
- 		ldr 	r0, [baseaddr, #offsetx]
+ 		ldr 	        r0, [baseaddr, #offsetx]
+                mov             r1, r0
+                add             r0, baseaddr, #offsetstr
  		bl		printf
  		b 		afterdigitloopprintf
 
  lowercase:
  		mov		r0, #97
- 		str 	r0, [baseaddr, #offsetx]
+ 		str 	        r0, [baseaddr, #offsetx]
 
  		// while (x < 123)
  lowercaseloop:
@@ -73,16 +75,18 @@ base_address:   .word base
  		bge		caps
 
  		// if (x < 123)
- 		ldr 	r0, [baseaddr, #offsetx]
+ 		ldr 	        r0, [baseaddr, #offsetx]
+                mov             r1, r0
+                add             r0, baseaddr, #offsetstr
  		bl		printf
  		b 		afterlowercaseprintf
  		// while (x < 90)
-caps:
+ caps:
 		mov		r0, #90
-		str 	r0, [baseaddr, #offsetx]
+		str 	        r0, [baseaddr, #offsetx]
 
 		// while (x < 91)
-capsloop:
+ capsloop:
 		ldr		r0, [baseaddr, #offsetx]
 
  		//if (x >= 91)
@@ -90,32 +94,34 @@ capsloop:
  		bge		done
 
  		// if (x < 91)
- 		ldr 	r0, [baseaddr, #offsetx]
+ 		ldr 	        r0, [baseaddr, #offsetx]
+                mov             r1, r0
+                add             r0, baseaddr, #offsetstr
  		bl		printf
  		b 		aftercapsprintf
 
  afterdigitloopprintf:
  		ldr		r0, [baseaddr, #offsetx]
- 		add 	r0, r0, #1
- 		str 	r0, [baseaddr, #offsetx]
+ 		add 	        r0, r0, #1
+ 		str 	        r0, [baseaddr, #offsetx]
 
  		b 		digitloop
 
  afterlowercaseprintf:
  		ldr		r0, [baseaddr, #offsetx]
- 		add 	r0, r0, #1
- 		str 	r0, [baseaddr, #offsetx]
+ 		add 	        r0, r0, #1
+ 		str 	        r0, [baseaddr, #offsetx]
 
  		b 		lowercaseloop
 
  aftercapsprintf:
  		ldr		r0, [baseaddr, #offsetx]
- 		add 	r0, r0, #1
- 		str 	r0, [baseaddr, #offsetx]
+ 		add 	        r0, r0, #1
+ 		str 	        r0, [baseaddr, #offsetx]
 
  		b 		capsloop
 
  done:
- 		.unreq	baseaddr
- 		pop 	{r9, lr}
+ 		.unreq	        baseaddr
+ 		pop 	        {r9, lr}
  		bx		lr
