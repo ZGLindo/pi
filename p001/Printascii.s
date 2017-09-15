@@ -14,17 +14,17 @@
 // ------------------------(Data)-------------------------------------
         .data
 // -------------------------------------------------------------------
-                .align 2
+        .align 4
 base:                         // the base address of the data segment
 // the loop control variable
-x:              .word 0
+x:      .word 0
 // format string for the output. %c - print assigned ascii char for val
-str:            .asciz "%c"
-ln:             .asciz "\n"
+str:    .asciz "%c "
+
 // assembly constants for addresses to the variables in the data seg
         .set    offsetx, x - base
         .set    offsetstr, str - base
-        .set    offsetln, ln - base
+
 // -------------------------(Data End)--------------------------------
         .text
 // -------------------------(Main Start)------------------------------
@@ -63,8 +63,6 @@ ln:             .asciz "\n"
  		b 		afterdigitloopprintf
 
  lowercase:
-                add             r0, baseaddr, #offsetln
-                bl              printf
  		mov		r0, #97
  		str 	        r0, [baseaddr, #offsetx]
 
