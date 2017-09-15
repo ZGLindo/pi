@@ -83,7 +83,7 @@ str:    .asciz "%c "
                 add             r0, baseaddr, #offsetstr
  		bl		printf
  		b 		afterlowercaseprintf
- 		// while (x < 90)
+ 		// while (x < 91)
  caps:
                 mov             r1, #10
                 add             r0, baseaddr, #offsetstr
