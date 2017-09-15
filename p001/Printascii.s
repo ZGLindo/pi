@@ -129,6 +129,8 @@ newline:        .asciz "\n "
  		b 		capsloop
 
  done:
+                add             r0, baseaddr, #offsetnl
+                bl              printf
  		.unreq	        baseaddr
  		pop 	        {r9, lr}
  		bx		lr
