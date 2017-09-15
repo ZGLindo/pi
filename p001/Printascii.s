@@ -17,7 +17,7 @@
         .align 4
 base:                         // the base address of the data segment
 // the loop control variable
-x:      .word 48
+x:      .word 0
 // format string for the output. %c - print assigned ascii char for val
 str:    .asciz "%c "
 
@@ -44,7 +44,8 @@ str:    .asciz "%c "
  		push 	        {r9, lr}
 		baseaddr .req r9
  		ldr		baseaddr, base_address
- 		str 	        r0, [baseaddr, #offsetx] 
+                mov             r0, #48
+                str             r0, [baseaddr, #offsetx]               
 
  		// while (x < 58)
  digitloop:	
