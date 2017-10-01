@@ -57,9 +57,9 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	push 	        {r9, lr}       
 
  	// Assign an alias for r9
-	baseaddr 		.req r9              
+	baseaddr .req r9              
 
- 	ldr			baseaddr, base_address
+ 	ldr			baseaddr, #base
 
  	// First line of table
         add                             r0, baseaddr, #offsetstrinit 
@@ -89,9 +89,9 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	// Print the results of the truth table equations for this line.
  	bl 			printf
 
- 	ldr 			r1, [baseaddr, offseta] // This set of 3 ldrs restore a,b,c to the
- 	ldr 			r2, [baseaddr, offsetb] // values they were last stored as
- 	ldr 			r3, [baseaddr, offsetc]
+ 	ldr 			r1, [baseaddr, offseta] // This set of 3 ldrs restore a,b,c
+ 	ldr 			r2, [baseaddr, offsetb] // to the values they were last 
+ 	ldr 			r3, [baseaddr, offsetc] // stored as.
 
  	// c++ then repeat loop
  	add 			r3, r3, #1
