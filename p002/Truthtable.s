@@ -108,6 +108,8 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
         //if (b<2, b++)
         add r2, r2, #1
+        mov r1, #0
+        str r1, [baseaddr, offsetc]
         str r2, [baseaddr, offsetb]
 
 calcTruth:
