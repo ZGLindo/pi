@@ -99,18 +99,30 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	b 			Cloop
 
 
-
-
  Bloop:
-        //if (b>=2, print a line)
-        cmp             r2, #2
-        bge             Aloop
+        //if (b>=2)
+        cmp                     r2, #2
+        bge                     Aloop
 
         //if (b<2, b++)
-        add r2, r2, #1
-        mov r1, #0
-        str r1, [baseaddr, #offsetc]
-        str r2, [baseaddr, #offsetb]
+        add                     r2, r2, #1
+        mov                     r1, #0
+        str                     r2, [baseaddr, #offsetb]
+        str                     r1, [baseaddr, #offsetc]
+        b                       Cloop
+
+
+Aloop:
+        //if (a>=2)
+        cmp                     r1, #2
+        bge                     done
+
+        //if (b<2, b++)
+        add                     r3, r3, #1
+        mov                     r2, #0
+        str                     r3, [baseaddr, #offseta]
+        str                     r2, [baseaddr, #offsetb]
+        b                       Bloop
 
 calcTruth:
  		// Calculate a&b&c and store in parameter registers
