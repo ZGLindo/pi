@@ -59,7 +59,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	// Assign an alias for r9
 	baseaddr .req r9              
 
- 	ldr			baseaddr, #base
+ 	ldr			baseaddr, base_address
 
  	// First line of table
         add                             r0, baseaddr, #offsetstrinit 
@@ -89,13 +89,13 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	// Print the results of the truth table equations for this line.
  	bl 			printf
 
- 	ldr 			r1, [baseaddr, offseta] // This set of 3 ldrs restore a,b,c
- 	ldr 			r2, [baseaddr, offsetb] // to the values they were last 
- 	ldr 			r3, [baseaddr, offsetc] // stored as.
+ 	ldr 			r1, [baseaddr, #offseta] // This set of 3 ldrs restore a,b,c
+ 	ldr 			r2, [baseaddr, #offsetb] // to the values they were last 
+ 	ldr 			r3, [baseaddr, #offsetc] // stored as.
 
  	// c++ then repeat loop
  	add 			r3, r3, #1
- 	str 			r3, [baseaddr, offsetc]
+ 	str 			r3, [baseaddr, #offsetc]
  	b 			Cloop
 
 
@@ -109,22 +109,22 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         //if (b<2, b++)
         add r2, r2, #1
         mov r1, #0
-        str r1, [baseaddr, offsetc]
-        str r2, [baseaddr, offsetb]
+        str r1, [baseaddr, #offsetc]
+        str r2, [baseaddr, #offsetb]
 
 calcTruth:
  		// Calculate a&b&c and store in parameter registers
  		and 			r4, r1, r2
  		and 			r4, r4, r3
- 		mov				r1, r4
+ 		mov		        r1, r4
 
  		// Calculate a|b|c and store in parameter registers
  		orr 			r4, r1, r2
  		orr 			r4, r4, r3
- 		mov				r2, r4
+ 		mov			r2, r4
 
  		// Calculate a|b&c and store in parameter registers
- 		orr				r4, r1, r2
+ 		orr			r4, r1, r2
  		and 			r4, r4, r3
  		mov 			r3, r4
 
