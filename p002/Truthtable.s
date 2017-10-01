@@ -117,10 +117,10 @@ Aloop:
         cmp                     r1, #2
         bge                     done
 
-        //if (b<2, b++)
-        add                     r3, r3, #1
+        //if (a<2, a++)
+        add                     r1, r1, #1
         mov                     r2, #0
-        str                     r3, [baseaddr, #offseta]
+        str                     r1, [baseaddr, #offseta]
         str                     r2, [baseaddr, #offsetb]
         b                       Bloop
 
