@@ -108,7 +108,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         add                     r2, r2, #1
         mov                     r1, #0
         str                     r2, [baseaddr, #offsetb]
-        str                     r1, [baseaddr, #offsetc]
+        str                     r1, [baseaddr, #offset]
         b                       Cloop
 
 
@@ -128,17 +128,18 @@ calcTruth:
  		// Calculate a&b&c and store in parameter registers
  		and 			r4, r1, r2
  		and 			r4, r4, r3
- 		mov		        r1, r4
 
  		// Calculate a|b|c and store in parameter registers
- 		orr 			r4, r1, r2
- 		orr 			r4, r4, r3
- 		mov			r2, r4
+ 		orr 			r5, r1, r2
+ 		orr 			r5, r5, r3
 
  		// Calculate a|b&c and store in parameter registers
- 		orr			r4, r1, r2
- 		and 			r4, r4, r3
- 		mov 			r3, r4
+ 		orr			r6, r1, r2
+ 		and 			r6, r6, r3
+
+                mov                     r1, r4
+                mov                     r2, r5
+ 		mov 			r3, r6
 
  		// Return from calculateTruth
  		bx 				lr
