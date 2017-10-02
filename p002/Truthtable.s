@@ -138,7 +138,6 @@ calcTruth:
 
  		// Calculate a|b|c and store in parameter registers
  		orr 			r5, r1, r2
- 		orr 			r5, r5, r3
 
  		// Calculate a|b&c and store in parameter registers
  		orr			r6, r1, r2
