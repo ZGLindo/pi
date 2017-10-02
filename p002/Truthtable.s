@@ -101,26 +101,26 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
  Bloop:
         //if (b>=2)
-        add                     r2, #1 //b++
-        str                     r2, [baseaddr, #offsetb]
         cmp                     r2, #2
         bge                     Aloop
 
         //if (b<2)
         mov                     r3, #0
+        add                     r2, #1 //b++
+        str                     r2, [baseaddr, #offsetb]
         str                     r3, [baseaddr, #offsetc]
         b                       Cloop
 
 
 Aloop:
         //if (a>=2)
-        //update a
-        add                     r1, r1, #1
-        str                     r1, [baseaddr, #offseta]
         cmp                     r1, #2
         bge                     done
 
         //if (a<2, a++)
+        //update a
+        add                     r1, r1, #1
+        str                     r1, [baseaddr, #offseta]
 
         //update b
         mov                     r2, #0
