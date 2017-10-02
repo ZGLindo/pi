@@ -76,7 +76,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
  	//if (c>=2, print a line)
  	cmp		r3, #2
- 	beq		Bloop      
+ 	bge		Bloop      
 
  	// if (c<2)
  	add 			r0, baseaddr, #offsetstr1
@@ -104,7 +104,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         mov                     r3, #0
         add                     r2, #1 //b++
         cmp                     r2, #2
-        beq                     Aloop
+        bge                     Aloop
 
         //if (b<2)
         str                     r2, [baseaddr, #offsetb]
@@ -115,7 +115,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 Aloop:
         //if (a>=2)
         cmp                     r1, #2
-        beq                     done
+        bge                     done
 
         //if (a<2, a++)
         //update a
