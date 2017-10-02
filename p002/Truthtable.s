@@ -109,6 +109,8 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         add                     r2, #1 //b++
         str                     r2, [baseaddr, #offsetb]
         str                     r3, [baseaddr, #offsetc]
+        cmp                     r2, #2
+        bge                     Aloop
         b                       Cloop
 
 
