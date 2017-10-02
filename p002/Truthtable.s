@@ -20,9 +20,9 @@ base:                         // the base address of the data segment
 a:		.word 0
 b:		.word 0
 c: 		.word 0
-equ1:           .word
-equ2:           .word
-equ3:           .word
+eq1:            .word
+eq2:            .word
+eq3:            .word
 
 // format string for the output. %d - an integer value.
 strinit: .asciz "| A | B | C | A&B&C | A|B|C | A|B&C |\n"
