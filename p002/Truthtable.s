@@ -20,9 +20,6 @@ base:                         // the base address of the data segment
 a:		.word 0
 b:		.word 0
 c: 		.word 0
-eq1:            .word
-eq2:            .word
-eq3:            .word
 
 // format string for the output. %d - an integer value.
 strinit: .asciz "| A | B | C | A&B&C | A|B|C | A|B&C |\n"
@@ -40,9 +37,6 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         .set    offseta, a - base
         .set    offsetb, b - base
         .set    offsetc, c - base
-        .set    offseteq1, eq1 - base
-        .set    offseteq2, eq2 - base
-        .set    offseteq3, eq3 - base
 // -------------------------(Data End)--------------------------------
         .text
 // -------------------------(Main Start)------------------------------
@@ -159,9 +153,6 @@ calcTruth:
  	orr			r6, r1, r2
  	and 			r6, r6, r3
 
-        str                     r4, [baseaddr, #offseteq1]
-        str                     r5, [baseaddr, #offseteq2]
-        str                     r6, [baseaddr, #offseteq3]
  	// Return from calculateTruth
  	bx 			lr
 
