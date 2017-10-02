@@ -94,9 +94,9 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	add 			r0, baseaddr, #offsetstr2
  	bl 			calcTruth
 
-        ldr                     r1, [baseaddr, #offseteq1] 
-        ldr                     r2, [baseaddr, #offseteq2] 
-        ldr                     r3, [baseaddr, #offseteq3] 
+        ldr                     r1, [baseaddr, #offseteq1]
+        ldr                     r2, [baseaddr, #offseteq2]
+        ldr                     r3, [baseaddr, #offseteq3]
 
  	// Print the results of the truth table equations for this line.
  	bl 			printf
@@ -144,23 +144,23 @@ Aloop:
         b                       Cloop
 
 calcTruth:
- 		// Calculate a&b&c and store in parameter registers
- 		and 			r4, r1, r2
- 		and 			r4, r4, r3
+ 	// Calculate a&b&c and store in parameter registers
+ 	and 			r4, r1, r2
+ 	and 			r4, r3
 
- 		// Calculate a|b|c and store in parameter registers
- 		orr 			r5, r1, r2
- 		orr 			r5, r5, r3
+ 	// Calculate a|b|c and store in parameter registers
+ 	orr 			r5, r1, r2
+ 	orr 			r5, r3
 
- 		// Calculate a|b&c and store in parameter registers
- 		orr			r6, r1, r2
- 		and 			r6, r6, r3
+ 	// Calculate a|b&c and store in parameter registers
+ 	orr			r6, r1, r2
+ 	and 			r6, r3
 
-                str                     r4, [baseaddr, #offseteq1]
-                str                     r5, [baseaddr, #offseteq2]
-                str                     r6, [baseaddr, #offseteq3]
- 		// Return from calculateTruth
- 		bx 				lr
+        str                     r4, [baseaddr, #offseteq1]
+        str                     r5, [baseaddr, #offseteq2]
+        str                     r6, [baseaddr, #offseteq3]
+ 	// Return from calculateTruth
+ 	bx 			lr
 
  done:
  		.unreq	        baseaddr
