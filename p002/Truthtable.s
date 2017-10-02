@@ -75,7 +75,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  		
 
  	//if (c>=2, print a line)
- 	cmp		r3, #3
+ 	cmp		r3, #2
  	beq		Bloop      
 
  	// if (c<2)
@@ -101,7 +101,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
  Bloop:
         //if (b>=2)
-        cmp                     r2, #3
+        cmp                     r2, #2
         beq                     Aloop
 
         //if (b<2)
@@ -114,7 +114,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
 Aloop:
         //if (a>=2)
-        cmp                     r1, #3
+        cmp                     r1, #2
         beq                     done
 
         //if (a<2, a++)
