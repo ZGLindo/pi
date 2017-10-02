@@ -101,7 +101,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
  Bloop:
         //if (b>=2)
-        cmp                     r2, #2
+        cmp                     r2, #1
         beq                     Aloop
 
         //if (b<2)
