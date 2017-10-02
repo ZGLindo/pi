@@ -122,6 +122,7 @@ Aloop:
         add                     r1, r1, #1
         str                     r1, [baseaddr, #offseta]
         //update b
+        mov                     r3, #0
         mov                     r2, #0
         str                     r2, [baseaddr, #offsetb]
         
