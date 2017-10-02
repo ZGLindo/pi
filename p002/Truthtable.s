@@ -95,9 +95,9 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	bl 			calcTruth
 
  	// Print the results of the truth table equations for this line.
-        ldr                     r1, [baseaddr, #offseteq1]
-        ldr                     r2, [baseaddr, #offseteq2]
-        ldr                     r3, [baseaddr, #offseteq3]
+        mov                     r1, r4
+        mov                     r2, r5
+        mov                     r3, r6
  	bl 			printf
 
  	ldr 			r1, [baseaddr, #offseta] // This set of 3 ldrs restore a,b,c
