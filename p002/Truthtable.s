@@ -94,11 +94,10 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	add 			r0, baseaddr, #offsetstr2
  	bl 			calcTruth
 
-        ldr                     r1, [baseaddr, #offseteq1]
-        ldr                     r2, [baseaddr, #offseteq2]
-        ldr                     r3, [baseaddr, #offseteq3]
-
  	// Print the results of the truth table equations for this line.
+        mov                     r1, [baseaddr, offseteq1]
+        mov                     r2, [baseaddr, offseteq2]
+        mov                     r3, [baseaddr, offseteq3]
  	bl 			printf
 
  	ldr 			r1, [baseaddr, #offseta] // This set of 3 ldrs restore a,b,c
@@ -147,7 +146,7 @@ calcTruth:
         ldr                     r1, [baseaddr, #offseta] // This set of 3 ldrs restore a,b,c
         ldr                     r2, [baseaddr, #offsetb] // to the values they were last 
         ldr                     r3, [baseaddr, #offsetc] // stored as.
-        
+
  	// Calculate a&b&c and store in parameter registers
  	and 			r4, r1, r2
  	and 			r4, r4, r3
