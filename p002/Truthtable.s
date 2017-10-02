@@ -144,17 +144,21 @@ Aloop:
         b                       Cloop
 
 calcTruth:
+        ldr                     r1, [baseaddr, #offseta] // This set of 3 ldrs restore a,b,c
+        ldr                     r2, [baseaddr, #offsetb] // to the values they were last 
+        ldr                     r3, [baseaddr, #offsetc] // stored as.
+        
  	// Calculate a&b&c and store in parameter registers
  	and 			r4, r1, r2
- 	and 			r4, r3
+ 	and 			r4, r4, r3
 
  	// Calculate a|b|c and store in parameter registers
  	orr 			r5, r1, r2
- 	orr 			r5, r3
+ 	orr 			r5, r5, r3
 
  	// Calculate a|b&c and store in parameter registers
  	orr			r6, r1, r2
- 	and 			r6, r3
+ 	and 			r6, r6, r3
 
         str                     r4, [baseaddr, #offseteq1]
         str                     r5, [baseaddr, #offseteq2]
