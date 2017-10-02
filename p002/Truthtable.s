@@ -20,6 +20,10 @@ base:                         // the base address of the data segment
 a:		.word 0
 b:		.word 0
 c: 		.word 0
+equ1:           .word
+equ2:           .word
+equ3:           .word
+
 // format string for the output. %d - an integer value.
 strinit: .asciz "| A | B | C | A&B&C | A|B|C | A|B&C |\n"
 .align 4
@@ -28,6 +32,7 @@ str1:    .asciz "| %d | %d | %d |"
 str2:    .asciz "   %d   |   %d   |   %d   |\n"
 .align 4
 
+
 // assembly constants for addresses to the variables in the data seg
         .set    offsetstrinit, strinit - base
         .set    offsetstr1, str1 - base
@@ -35,6 +40,9 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         .set    offseta, a - base
         .set    offsetb, b - base
         .set    offsetc, c - base
+        .set    offseteq1, eq1 - base
+        .set    offseteq2, eq2 - base
+        .set    offseteq3, eq3 - base
 // -------------------------(Data End)--------------------------------
         .text
 // -------------------------(Main Start)------------------------------
@@ -86,6 +94,10 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
  	add 			r0, baseaddr, #offsetstr2
  	bl 			calcTruth
 
+        ldr                     r1, [baseaddr, #offseteq1] 
+        ldr                     r2, [baseaddr, #offseteq2] 
+        ldr                     r3, [baseaddr, #offseteq3] 
+
  	// Print the results of the truth table equations for this line.
  	bl 			printf
 
@@ -106,9 +118,9 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
 
         //if (b<2)
         mov                     r3, #0
+        str                     r3, [baseaddr, #offsetc]
         add                     r2, #1 //b++
         str                     r2, [baseaddr, #offsetb]
-        str                     r3, [baseaddr, #offsetc]
         cmp                     r2, #2
         bge                     Aloop
         b                       Cloop
@@ -138,15 +150,15 @@ calcTruth:
 
  		// Calculate a|b|c and store in parameter registers
  		orr 			r5, r1, r2
+ 		orr 			r5, r5, r3
 
  		// Calculate a|b&c and store in parameter registers
  		orr			r6, r1, r2
  		and 			r6, r6, r3
 
-                mov                     r1, r4
-                mov                     r2, r5
- 		mov 			r3, r6
-
+                str                     r4, [baseaddr, #offseteq1]
+                str                     r5, [baseaddr, #offseteq2]
+                str                     r6, [baseaddr, #offseteq3]
  		// Return from calculateTruth
  		bx 				lr
 
