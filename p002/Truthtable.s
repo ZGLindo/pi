@@ -104,8 +104,7 @@ str2:    .asciz "   %d   |   %d   |   %d   |\n"
         cmp                     r2, #2
         bge                     Aloop
 
-        //if (b<2, b++)
-        add                     r2, r2, #1
+        //if (b<2)
         mov                     r3, #0
         str                     r2, [baseaddr, #offsetb]
         str                     r3, [baseaddr, #offsetc]
@@ -118,11 +117,14 @@ Aloop:
         bge                     done
 
         //if (a<2, a++)
+        //update a
         add                     r1, r1, #1
-        mov                     r2, #0
         str                     r1, [baseaddr, #offseta]
+        //update b
+        mov                     r2, #0
         str                     r2, [baseaddr, #offsetb]
-        b                       Bloop
+        
+        b                       Cloop
 
 calcTruth:
  		// Calculate a&b&c and store in parameter registers
